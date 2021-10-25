@@ -1,0 +1,3 @@
+data = "hi"
+
+print(data)
