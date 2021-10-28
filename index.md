@@ -21,8 +21,8 @@ A quick how-to on git 💻
 
 ### __<ins>How do I install the project repository?</ins>__
 1. Navigate to the main page of the repository. (Link above)
-2. Above the list of files, click ⬇ Code 
-  ![Image](https://github.com/PabloMemescobar/solid-doodle/blob/gh-pages/SiteImages/image843.png)
+2. Above the list of files, click ⬇ Code  
+  ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image843.png)
 3. 
 <!-- You can use the [editor on GitHub](https://github.com/PabloMemescobar/solid-doodle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
