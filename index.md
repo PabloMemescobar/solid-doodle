@@ -9,8 +9,6 @@ A quick how-to on git 💻
 - __Github__
   - Github is a cloud-based hosting service that lets your manage Git repositories (like solid-doodle!)
 
-### __<ins>Where can I find documentation for Git?</ins>__
-
 ### __<ins>What should I have installed to work on the project?</ins>__
 - [Git](https://git-scm.com/downloads)
 - [Github desktop (optional GUI version)](https://desktop.github.com/)
@@ -51,7 +49,7 @@ A quick how-to on git 💻
 7. git add .
 8. git commit -m "XXX-123 implement text classification"
 ```
-__Each commit message should be written in *present imperative* tense (such as "Add Hello, World", "Inplement text classification", "Remove unnecessary variable")__
+__Each commit message should be written in *present imperative* tense (such as "Add Hello, World", "Implement text classification", "Remove unnecessary variable")__
 
 ### __<ins>What should I do when I’ve finished a task?</ins>__
 Carefully answer the questions below before considering your work as complete and ready for review.
@@ -86,7 +84,7 @@ Pushing to the repository means that all other developers will build and run you
 
 ### __<ins>Some relevant cmd line arguments</ins>__
 - cd 
-  - cd is known as Change Directory, is is used to navigate from your current working directory into one of it's children
+  - cd is known as Change Directory, it is used to navigate from your current working directory into one of it's children
 
 - cd ..
   - By adding .. after cd instead of a directory, you go up from your current working directory to it's parent
@@ -94,32 +92,10 @@ Pushing to the repository means that all other developers will build and run you
 - ls
   - ls is known as List Information, it gives you information about files and directories within the file system
 
+### __<ins>Things to avoid doing</ins>__
+- __DO NOT__ work on the main branch, always make a separate branch and work there instead
+- __DO NOT__ merge into main without going through code review. The code that is merged will be copied to everyone elses computer and everyones tasks are very dependant on each other. Also gives everyone an opportunity to learn how to write good code
 
-<!-- ### Markdown
- 
-Syntax highlighted code block
+### __<ins>Where can I find documentation for Git?</ins>__
+On Git's website [Git guide](https://git-scm.com/docs)
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/PabloMemescobar/solid-doodle/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out. -->
