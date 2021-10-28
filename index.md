@@ -38,6 +38,39 @@ A quick how-to on git 💻
 
 7. You're done! 🥳👍
 
+### __<ins>How do I start working on a task?</ins>__
+```markdown
+1. git checkout main
+2. git pull
+3. git checkout -b feature/XXX-123
+4. git push origin feature/XXX-123
+
+5. git add .
+6. git commit -m "XXX-123 Add Hello, World!"
+
+7. git add .
+8. git commit -m "XXX-123 implement text classification"
+```
+
+### __<ins>What should I do when I’ve finished a task?/ins>__
+Carefully answer the questions below before considering your work as complete and ready for review.
+Pushing to the repository means that all other developers will build and run your code, and it will be pushed to Main. You should make sure your code is functional.
+
+* Does my code execute?
+* Does my code produce any errors or unexpected warnings?
+* Does my code result in any performance regression?
+* Is my code readable?
+* Have I separated my code out into a good system of functions?
+* Does my code fulfil the criteria outlined in the task?
+
+### __<ins>Submitting your scripts to Code Review</ins>__
+1. Push your local changes to the remote repository
+```markdown
+1. git checkout my_branch
+2. git push origin my_branch
+```
+2. Navigate to the Github website and find your branch
+You should the
 ### Markdown
  
 Syntax highlighted code block
