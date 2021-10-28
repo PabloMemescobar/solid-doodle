@@ -1,8 +1,12 @@
 ## Git Guide
 
-You can use the [editor on GitHub](https://github.com/PabloMemescobar/solid-doodle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+A quick how-to on git 💻
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+__<ins>What is git?</ins>__
+
+<!-- You can use the [editor on GitHub](https://github.com/PabloMemescobar/solid-doodle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files. -->
 
 ### Markdown
 
