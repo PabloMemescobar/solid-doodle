@@ -69,8 +69,13 @@ Pushing to the repository means that all other developers will build and run you
 1. git checkout my_branch
 2. git push origin my_branch
 ```
-2. Navigate to the Github website and find your branch
-You should the
+2. Navigate to the Github website and find your branch. You should then see this notification to open a pull request
+  ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image877.png)
+
+3. First fill out the description of the task. Then add everyone on the team as reviewers. Finally, create the pull request.
+  ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image893.png)
+
+
 ### Markdown
  
 Syntax highlighted code block
