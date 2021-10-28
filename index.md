@@ -4,11 +4,24 @@ A quick how-to on git 💻
 
 ### __<ins>What's the difference between git and github?</ins>__
 - __Git__
-  - dsda
+  - Git is a version control system that lets you manage and keep track of your source code history
 
 - __Github__
-  - zdsd
-asdasd
+  - Github is a cloud-based hosting service that lets your manage Git repositories (like solid-doodle!)
+
+### __<ins>Where can I find documentation for Git?</ins>__
+
+### __<ins>What should I have installed to work on the project?</ins>__
+-[Git](https://git-scm.com/downloads)
+-[Github desktop (optional GUI version)](https://desktop.github.com/)
+-Project Repository
+
+### __<ins>Where can I find the project repository?</ins>__
+-[Econ 411 Group 5 repository](https://github.com/PabloMemescobar/solid-doodle)
+
+### __<ins>How do I install the project repository?</ins>__
+1. Navigate to the main page of the repository. (Link above)
+2. ![Image 1](https://octodex.github.com/images/yaktocat.png)
 <!-- You can use the [editor on GitHub](https://github.com/PabloMemescobar/solid-doodle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files. -->
