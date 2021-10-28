@@ -51,8 +51,9 @@ A quick how-to on git 💻
 7. git add .
 8. git commit -m "XXX-123 implement text classification"
 ```
+__Each commit message should be written in *present imperative* tense (such as "Add Hello, World", "Inplement text classification", "Remove unnecessary variable")__
 
-### __<ins>What should I do when I’ve finished a task?/ins>__
+### __<ins>What should I do when I’ve finished a task?</ins>__
 Carefully answer the questions below before considering your work as complete and ready for review.
 Pushing to the repository means that all other developers will build and run your code, and it will be pushed to Main. You should make sure your code is functional.
 
@@ -65,10 +66,12 @@ Pushing to the repository means that all other developers will build and run you
 
 ### __<ins>Submitting your scripts to Code Review</ins>__
 1. Push your local changes to the remote repository
+
 ```markdown
 1. git checkout my_branch
 2. git push origin my_branch
 ```
+
 2. Navigate to the Github website and find your branch. You should then see this notification to open a pull request
   ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image877.png)
 
@@ -89,7 +92,7 @@ Pushing to the repository means that all other developers will build and run you
   - By adding .. after cd instead of a directory, you go up from your current working directory to it's parent
 
 - ls
-  ls is known as List Information, it gives you information about files and directories within the file system
+  - ls is known as List Information, it gives you information about files and directories within the file system
 
 
 <!-- ### Markdown
