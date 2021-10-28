@@ -34,7 +34,7 @@ A quick how-to on git 💻
   ```markdown
   git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
   ```
-6. Press Enter to create your local clone
+6. Press Enter to create your local clone. (You will be prompted to input your Github username and password)
 
 7. You're done! 🥳👍
 
@@ -75,8 +75,24 @@ Pushing to the repository means that all other developers will build and run you
 3. First fill out the description of the task. Then add everyone on the team as reviewers. Finally, create the pull request.
   ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image893.png)
 
+4. After at __least__ 1 other member of the team has reviewed your code and approved it, you can merge the pull request to the main branch.
+  ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image921.png)
 
-### Markdown
+5. Then make sure to delete the branch after it's been merged. 
+  ![Image](https://raw.githubusercontent.com/PabloMemescobar/solid-doodle/gh-pages/SiteImages/image937.png)
+
+### __<ins>Some relevant cmd line arguments</ins>__
+- cd 
+  - cd is known as Change Directory, is is used to navigate from your current working directory into one of it's children
+
+- cd ..
+  - By adding .. after cd instead of a directory, you go up from your current working directory to it's parent
+
+- ls
+  ls is known as List Information, it gives you information about files and directories within the file system
+
+
+<!-- ### Markdown
  
 Syntax highlighted code block
 
@@ -103,4 +119,4 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out. -->
