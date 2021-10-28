@@ -1,8 +1,13 @@
-# Git Guide
+# __Git Guide__
 
 A quick how-to on git 💻
 
-### __<ins>What is git?</ins>__
+### __<ins>What's the difference between git and github?</ins>__
+- __Git__
+  - dsda
+
+- __Github__
+  - zdsd
 asdasd
 <!-- You can use the [editor on GitHub](https://github.com/PabloMemescobar/solid-doodle/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
