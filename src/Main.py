@@ -1,2 +1,2 @@
-data = "hi"
+data = "hello"
 print(data)
