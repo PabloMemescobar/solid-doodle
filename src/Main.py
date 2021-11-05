@@ -1,7 +1,8 @@
+# Modules
 import os
 import csv
 
-# Path to the data
+# Constants
 DATA_DIRECTORY = os.path.dirname(os.getcwd()) + "\\Data"
 
 # Fake data and real data files 
