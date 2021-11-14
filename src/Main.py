@@ -16,10 +16,6 @@ from sklearn.utils import shuffle
 #remove numbers and special characters
 import re
 
-#remove stopwords 
-import nltk
-from nltk.corpus import stopwords
-
 #remove stopwords
 import stop_words
 from stop_words import get_stop_words
@@ -130,3 +126,14 @@ while i < len(articles):
             fake_dict[word] += 1
     i += 1
 
+
+# In[13]
+
+
+#function to clean data
+def cleanData(text):
+    text = str(text).lower()
+    text = re.sub('[^a-z]' , ' ', text)
+    stop = get_stop_words('en')
+    text = ' '.join([word for word in text.split() if word not in (stop)])
+    return text
