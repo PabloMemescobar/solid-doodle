@@ -111,6 +111,7 @@ article_list = []
 for article in articles:
     article_list.append(article.split())
 
+
 #loops through each article, check whether its true or false to put the words in correct dictionary, and then loops through the list of words
 i = 0
 while i < len(articles):
@@ -125,6 +126,25 @@ while i < len(articles):
                 fake_dict[word] = 0
             fake_dict[word] += 1
     i += 1
+
+#update: update dictionaries to only contain words with length creater than 3
+
+new_true_dict = {} #temp dict
+new_fake_dict = {} #temp dict
+
+for key in true_dict:
+    if len(key) > 3:
+        new_true_dict[key] = true_dict[key]
+
+for key in fake_dict:
+    if len(key) > 3:
+        new_fake_dict[key] = fake_dict[key]
+
+true_dict = new_true_dict
+fake_dict = new_fake_dict
+
+print(len(true_dict))
+print(len(fake_dict))
 
 
 # In[13]
