@@ -111,6 +111,7 @@ article_list = []
 for article in articles:
     article_list.append(article.split())
 
+
 #loops through each article, check whether its true or false to put the words in correct dictionary, and then loops through the list of words
 i = 0
 while i < len(articles):
@@ -128,12 +129,121 @@ while i < len(articles):
 
 
 # In[13]
+#create all values needed for the Naive Bayes Classifier
+
+#function that counts adds together all values in dictionary
+def dict_count_words(dict):
+    count = 0
+    for key in dict:
+        count += dict[key]
+    return count
+
+#create dictionaries of probabilities of each word for both fake and true dictionaries
+def dict_create_probabilities(dict, count):
+    prob_dict = {}
+    for key in dict:
+        prob_dict[key] = dict[key]/count
+    return prob_dict
+
+#create count of words for both fake and true
+fake_word_count = dict_count_words(fake_dict)
+true_word_count = dict_count_words(true_dict)
+
+avg_words = (fake_word_count + true_word_count) / 2
+
+#create probability dictionaries for both fake and true
+fake_prob_dict = dict_create_probabilities(fake_dict, fake_word_count)
+true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
+
+#create probabilities of article being fake or true using testing data
+fake_prob = label_list.count("fake")/len(label_list)
+true_prob = 1-fake_prob
+
+#test
+print(fake_dict["trump"]/fake_word_count)
+print(fake_prob_dict["trump"])
+print(true_dict["trump"]/true_word_count)
+print(true_prob_dict["trump"])
+
+print(fake_dict["president"]/fake_word_count)
+print(fake_prob_dict["president"])
+print(true_dict["president"]/true_word_count)
+print(true_prob_dict["president"])
 
 
-#function to clean data
-def cleanData(text):
-    text = str(text).lower()
-    text = re.sub('[^a-z]' , ' ', text)
-    stop = get_stop_words('en')
-    text = ' '.join([word for word in text.split() if word not in (stop)])
-    return text
+#In[14]
+#create naive bayes classifier using dictionaries created above
+
+# Class NaiveBayesClassifier(file): #assuming the file would be the cleaned file that we run through our cleaning function
+# article_list = file.tolist()
+
+import math
+
+def true_probability_list(articles):
+    true_prob_list = []
+    for article in articles:
+        conditional_true = 0 #P(B|A)
+        for word in article:
+            if word in true_prob_dict:
+                conditional_true += math.log(true_prob_dict[word]) # for each word in the article, we calculate P(word|true) and add the probabilities together (since they are logs)
+            #else:
+                #conditional_true += math.log(10000/true_prob)
+        true_prob_list.append(conditional_true*true_prob) #P(B|A) * P(A)
+    return true_prob_list
+
+def fake_probability_list(articles):
+    fake_prob_list = []
+    for article in articles:
+        conditional_fake = 0 #P(B|A)
+        for word in article:
+            if word in fake_prob_dict:
+                conditional_fake += math.log(fake_prob_dict[word]) # for each word in the article, we calculate P(word|fake) and add the probabilities together (since they are logs)
+            #else:
+                #conditional_fake += math.log(10000/fake_prob)
+        fake_prob_list.append(conditional_fake*fake_prob) #P(B|A) * P(A)
+    return fake_prob_list
+
+# this function will allow us to test the accuracy of our program by also including the list of labels for each article (i.e. whether they're true or not)
+def test_true_or_fake(true_probs, fake_probs, label_list): # takes in the lists created from the true_probability_list and fake_probability_list functions
+    i = 1
+    results = []
+    while i < len(true_probs)+1: # compares each index in both lists and determines which value is bigger (i.e. if P(true|article) > P(fake|article) then return "Article i is True")
+        if true_probs[i-1] > fake_probs[i-1]:
+            print("Article " + str(i) + " is True.")
+            results.append("true")
+        else:
+            print("Article " + str(i) + " is Fake.")
+            results.append("fake")
+        i += 1
+    
+    count = 0
+    i = 0
+    while i < len(results): # Here we are comparing the list inputed with the list created in the program to determine the accuracy
+        if results[i] == label_list[i]:
+            count += 1
+        i += 1
+    print("The accuracy is", count/len(results))
+
+def true_or_fake(true_probs, fake_probs):
+    while i in range(len(true_probs)+1):
+        results = []
+        if true_probs[i-1] > fake_probs[i-1]:
+            print("Article " + str(i) + " is True.")
+            results.append("true")
+        else:
+            print("Article " + str(i) + " is Fake.")
+            results.append("true")
+
+
+# %%
+
+#test
+test_articles = X_test.tolist()
+labels = y_test.tolist()
+
+test_true_or_fake(true_probability_list(test_articles), fake_probability_list(test_articles), labels)
+# %%
+
+# 0.0.5739529706414359 using logs, but before adding in else statement
+# 0.49019062195631 using logs and adding in else statement with 1/prob
+
