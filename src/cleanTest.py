@@ -12,7 +12,9 @@ import re; pattern = re.compile('[^a-zA-Z_]+')
 import time
 import multiprocessing
 from multiprocessing import Pool
-from timeit import default_timer as timer 
+from timeit import default_timer as timer
+import sys
+
 # Constants
 DATA_DIRECTORY = Path(os.path.dirname(os.getcwd()) + "/Data/")
 
@@ -101,8 +103,24 @@ if __name__=="__main__":
   article_list = []
 
   for article in masterDataTable:
+    try:
       article_list.append(article.split())
+    except AttributeError:
+      print("incorrect attribute, flan fix here line 109, code shutting down...")
+      sys.exit()
 
+  # try:
+  #   for article in masterDataTable:
+  #     article_list.append(article.split())
+  #     break
+  # except TypeError:
+  #   print("incorrect type, code shutting down...")
+  #   sys.exit()
+  # else:
+  #   print("incorrect type, code shutting down...")
+  #   sys.exit()
+
+  
   #loops through each article, check whether its true or false to put the words in correct dictionary, and then loops through the list of words
   i = 0
   while i < len(articles):
