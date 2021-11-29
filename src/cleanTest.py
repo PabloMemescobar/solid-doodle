@@ -11,7 +11,7 @@ from badWords import badWordsTable
 import re; pattern = re.compile('[^a-zA-Z_]+')
 import time
 from multiprocessing import Pool
-
+from timeit import default_timer as timer 
 # Constants
 DATA_DIRECTORY = Path(os.path.dirname(os.getcwd()) + "/Data/")
 
@@ -63,7 +63,7 @@ if __name__=="__main__":
 
   data = fakeData + trueData
   masterDataTable = []
-
+  start = timer()
   chunks = [data[x:x+10] for x in range(0, len(data), 10)]
 
   with Pool(processes=10) as pool:
@@ -72,6 +72,7 @@ if __name__=="__main__":
 
     result = pool.apply_async(time.sleep, (10,))
 
+  print("with multi:", timer()-start)
   #show articles
   # for articles in masterDataTable:
   #   print(articles)
