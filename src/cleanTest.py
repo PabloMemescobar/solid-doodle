@@ -64,7 +64,7 @@ if __name__=="__main__":
   with open(DATA_DIRECTORY / "True.csv", encoding = "utf8") as csvfile:
     trueData = list(csv.reader(csvfile))
 
-  print(multiprocessing.cpu_count())
+  print("Computer core count: " + str(multiprocessing.cpu_count()))
 
   computerCoreCount = multiprocessing.cpu_count()
   data = fakeData + trueData
@@ -78,12 +78,18 @@ if __name__=="__main__":
 
     result = pool.apply_async(time.sleep, (10,))
 
-  print("with multi:", timer()-start)
+  print("Runtime: ", timer()-start)
   #show articles
   # for articles in masterDataTable:
   #   print(articles)
   #   print("\n \n \n")
 
+  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+
+  # [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], [20, 21, 22, 23, 24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34]]
+
+
+# @everyone It would be good if today in class everyone could run the `cleanTest.py` file and take a screenshot of the output 
   #split the data into train and test samples - sklearn
   #20% of the dataset will be use to test; 'random_state' could be any number
 
