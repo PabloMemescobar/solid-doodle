@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from badWords import badWordsTable
 import re; pattern = re.compile('[^a-zA-Z_]+')
 import time
+import multiprocessing
 from multiprocessing import Pool
 from timeit import default_timer as timer 
 # Constants
@@ -61,12 +62,15 @@ if __name__=="__main__":
   with open(DATA_DIRECTORY / "True.csv", encoding = "utf8") as csvfile:
     trueData = list(csv.reader(csvfile))
 
+  print(multiprocessing.cpu_count())
+
+  computerCoreCount = multiprocessing.cpu_count()
   data = fakeData + trueData
   masterDataTable = []
   start = timer()
-  chunks = [data[x:x+10] for x in range(0, len(data), 10)]
+  chunks = [data[x:x+computerCoreCount] for x in range(0, len(data), computerCoreCount)]
 
-  with Pool(processes=10) as pool:
+  with Pool(processes = computerCoreCount) as pool:
     threadData = [pool.apply_async(cleanData, (chunks[i],)) for i in range(len(chunks))]
     masterDataTable+=[sections.get(timeout=100) for sections in threadData]
 
