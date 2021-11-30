@@ -258,7 +258,7 @@ for set in test_train:
   true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
 
   #create probabilities of article being fake or true using testing data
-  fake_prob = label_list.count("fake")/len(label_list)
+  fake_prob = set[3].count("fake")/len(label_list)
   true_prob = 1-fake_prob
 
   #find probailities from classifier
