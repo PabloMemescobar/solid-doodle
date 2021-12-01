@@ -8,14 +8,10 @@ import math
 from sklearn.model_selection import train_test_split
 from badWords import badWordsTable
 import re; pattern = re.compile('[^a-zA-Z]+')
-import time
-import multiprocessing
-from multiprocessing import Pool
-from timeit import default_timer as timer
-import sys
 import random
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Constants
 # Ensuring that everyone running the code can access the data
@@ -23,7 +19,7 @@ DATA_DIRECTORY = Path(os.path.dirname(os.getcwd()) + "/Data/")
 
 # In[2]: Preparing data
 with open(DATA_DIRECTORY / "Fake.csv", encoding = "utf8") as csvfile:
-    fakeData = list(csv.reader(csvfile))
+  fakeData = list(csv.reader(csvfile))
 
 with open(DATA_DIRECTORY / "True.csv", encoding = "utf8") as csvfile:
   trueData = list(csv.reader(csvfile))
@@ -93,10 +89,10 @@ def cleanData(data):
 
   return data
 
-fakeData = cleanData(fakeData)
-trueData = cleanData(trueData)
+full_fakeData = cleanData(fakeData)
+full_trueData = cleanData(trueData)
 
-data = fakeData + trueData
+full_data = fakeData + trueData
 
 # In[4]: Make dictionaries
 
@@ -122,7 +118,7 @@ def makeDictionary(data, labels): #Data is a list of lists containing a single s
     i += 1
   return fake_dict, true_dict
 
-fake_dict, true_dict = makeDictionary(data, label_list)
+full_fake_dict, full_true_dict = makeDictionary(full_data, label_list)
 
 # In[5]: Create all values needed for the Naive Bayes Classifier
 
@@ -141,16 +137,17 @@ def dict_create_probabilities(dict, count):
     return prob_dict
 
 #create count of words for both fake and true
-fake_word_count = dict_count_words(fake_dict)
-true_word_count = dict_count_words(true_dict)
+full_fake_word_count = dict_count_words(full_fake_dict)
+full_true_word_count = dict_count_words(full_true_dict)
 
 #create probability dictionaries for both fake and true
-fake_prob_dict = dict_create_probabilities(fake_dict, fake_word_count)
-true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
+full_fake_prob_dict = dict_create_probabilities(full_fake_dict, fake_word_count)
+full_true_prob_dict = dict_create_probabilities(full_true_dict, true_word_count)
 
 #create probabilities of article being fake or true using testing data
-fake_prob = label_list.count("fake")/len(label_list)
-true_prob = 1-fake_prob
+full_fake_prob = label_list.count("fake")/len(label_list)
+full_true_prob = 1-full_fake_prob
+
 
 # In[6]: Create Classifier
 # articles is a list of lists where each list contains a cleaned article as 1 single string
@@ -195,6 +192,7 @@ def test_true_or_fake(true_probs, fake_probs, label_list): # takes in the lists 
             results.append("fake")
         i += 1
     count = 0
+    accuracy = []
     i = 0
     while i < len(results): # Here we are comparing the list inputed with the list created in the program to determine the accuracy
         if results[i] == label_list[i]:
@@ -203,7 +201,7 @@ def test_true_or_fake(true_probs, fake_probs, label_list): # takes in the lists 
     print("The accuracy is", count/len(results))
 
 def true_or_fake(true_probs, fake_probs):
-    while i in range(len(true_probs)+1):
+    for i in range(1, len(true_probs)+1):
         results = []
         if true_probs[i-1] > fake_probs[i-1]:
             print("Article " + str(i) + " is True.")
@@ -216,6 +214,7 @@ def true_or_fake(true_probs, fake_probs):
 
 # Split articles into five groups
 n = 5
+random.seed(5)
 random.shuffle(data)
 five_split = np.array_split(data, n)
 
@@ -257,7 +256,8 @@ for set in test_train:
   fake_prob_dict = dict_create_probabilities(fake_dict, fake_word_count)
   true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
 
-  #create probabilities of article being fake or true using testing data
+  #create probabilities of article being fake or true using training data
+  #P(A)
   fake_prob = set[3].count("fake")/len(label_list)
   true_prob = 1-fake_prob
 
@@ -270,33 +270,121 @@ for set in test_train:
 
 # In[9]: User input
 
-user_input = input("Please enter file path: ")
+user_input = input("Please enter file name: ")
 
-# THIS NEEDS TO BE WORKED ON STILL - WILL BE UPDATED NOV 30
-# def classifier(user_input, data):
-  # articles = getText(data)
-  # articles = cleanData(articles)
+def classifier(user_input):
+  with open(DATA_DIRECTORY / user_input, encoding = "utf8") as csvfile:
+    user_data = list(csv.reader(csvfile))
   
-  # full_data = getText(data)
-
-  # fake_dict, true_dict = makeDictionary(full_data, label_list)
+  user_articles = getText(user_data)
+  user_articles = cleanData(user_articles)
+  
+  #create dictionaries
+  fake_dict, true_dict = makeDictionary(full_data, label_list)
 
   #create count of words for both fake and true
-  # fake_word_count = dict_count_words(fake_dict)
-  # true_word_count = dict_count_words(true_dict)
+  fake_word_count = dict_count_words(fake_dict)
+  true_word_count = dict_count_words(true_dict)
 
   #create probability dictionaries for both fake and true
-  # fake_prob_dict = dict_create_probabilities(fake_dict, fake_word_count)
-  # true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
+  fake_prob_dict = dict_create_probabilities(fake_dict, fake_word_count)
+  true_prob_dict = dict_create_probabilities(true_dict, true_word_count)
 
-  #create probabilities of article being fake or true using testing data
-  # fake_prob = label_list.count("fake")/len(label_list)
-  # true_prob = 1-fake_prob
+  #create probabilities of article being fake or true using training data
+  #P(A)
+  fake_prob = label_list.count("fake")/len(label_list)
+  true_prob = 1-fake_prob
 
   #find probailities from classifier
-  # true_probs = true_probability_list(articles)
-  # fake_probs = fake_probability_list(articles)
+  true_probs = true_probability_list(user_articles)
+  fake_probs = fake_probability_list(user_articles)
 
   #determine accuracy of algorithm
-  # true_or_fake(true_probs, fake_probs)
+  true_or_fake(true_probs, fake_probs)
 
+classifier(user_input)
+
+# In[10]: Visualizations
+
+# TOP WORDS
+
+#creating dictionary containing the top 10 proportion of words in true and false articles, respectively
+from operator import itemgetter
+
+#this function find the 10 highest values in a dictionary and returns a new dictionary only containing those values
+def find_top_10(dictionary):
+    return dict(sorted(dictionary.items(), key = itemgetter(1), reverse = True)[:10])
+
+#this function takes in two dictionaries, find the top 10 words in dict1 and then find the proportion of those word in dict2
+def find_top_word_in_other(dict1, dict2):
+    top10_word_prop_in_other_dict = {}
+    for key in find_top_10(dict1):
+        if key in dict2:
+            top10_word_prop_in_other_dict[key] = dict2[key]
+    return top10_word_prop_in_other_dict
+
+top10_fake_prop_dict = find_top_10(full_fake_prob_dict)
+top10_true_prop_dict = find_top_10(full_true_prob_dict)
+
+top10_fake_prop_in_true_dict = find_top_word_in_other(full_true_prob_dict, full_fake_prob_dict)
+top10_true_prop_in_fake_dict = find_top_word_in_other(full_fake_prob_dict, full_true_prob_dict)
+
+X = top10_true_prop_dict.keys()
+X_axis = np.arange(len(X))
+
+plt.figure(figsize=(10, 4))
+plt.bar(X_axis-0.2, top10_true_prop_dict.values(), width = 0.4, label = "True")
+plt.bar(X_axis+0.2, top10_fake_prop_in_true_dict.values(), width = 0.4, label = "Fake")
+
+plt.xticks(X_axis, X)
+plt.xlabel("Words")
+plt.ylabel("Proportion of Words in Articles")
+plt.title("Proportion of Top 10 Words of True News in Articles")
+plt.legend()
+plt.show()
+
+#plot of top 10 words in fake and their proportions in both fake and true articles
+X = top10_fake_prop_dict.keys()
+X_axis = np.arange(len(X))
+
+plt.figure(figsize=(10, 4))
+plt.bar(X_axis+0.2, top10_true_prop_in_fake_dict.values(), width = 0.4, label = "True")
+plt.bar(X_axis-0.2, top10_fake_prop_dict.values(), width = 0.4, label = "Fake")
+
+plt.xticks(X_axis, X)
+plt.xlabel("Words")
+plt.ylabel("Proportion of Words in Articles")
+plt.title("Proportion of Top 10 Words of Fake News in Articles")
+plt.legend()
+plt.show()
+
+
+# ACCURACY
+X = ["First", "Second", "Third", "Fourth", "Fifth"]
+values = [0.7111, 0.6990, 0.7093, 0.7167, 0.7151]
+
+plt.figure(figsize=(10, 4))
+
+x = np.arange(len(X)) # the label locations
+width = 0.75 # the width of the bars
+
+fig, ax = plt.subplots()
+
+ax.set_ylabel('Accuracy')
+ax.set_xlabel('Training/Testing Set')
+ax.set_title('Cross Validation of Naive Bayes Classifier')
+ax.set_xticks(x)
+ax.set_xticklabels(X)
+ax.set_ylim([0, 0.80])
+
+pps = ax.bar(x, values, width, label='values')
+for p in pps:
+   height = p.get_height()
+   ax.annotate('{}'.format(height),
+      xy=(p.get_x() + p.get_width() / 2, height),
+      xytext=(0, 3), # 3 points vertical offset
+      textcoords="offset points",
+      ha='center', va='bottom')
+plt.show()
+
+# %%
