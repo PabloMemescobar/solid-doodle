@@ -17,6 +17,7 @@ from operator import itemgetter
 # Constants
 # Ensuring that everyone running the code can access the data
 DATA_DIRECTORY = Path(os.path.dirname(os.getcwd()) + "/Data/")
+TEXT_INDEX = 1
 
 # Constants for figures
 WIDTH = 10
@@ -37,15 +38,16 @@ with open(DATA_DIRECTORY / "True.csv", encoding = "latin1") as csvfile:
 def getText(data):
   text = []
   for i in range(1, len(data)):
-      text.append([data[i][1]]) 
+      text.append([data[i][TEXT_INDEX]]) 
   return text
 
 # This function will get the text column of the data and put it into a list with a label for whether the data is fake or true
 # This list will be put into another list that will hold all [article, label] pairings
 def getTextAddLabel(data, str):
   text = []
+  varnames = data[0]
   for i in range(1, len(data)):
-      text.append([data[i][1], str]) 
+      text.append([data[i][TEXT_INDEX], str]) 
   return text
 
 fakeData = getTextAddLabel(fakeData, "fake")
