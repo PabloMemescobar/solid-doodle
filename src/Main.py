@@ -45,7 +45,6 @@ def getText(data):
 # This list will be put into another list that will hold all [article, label] pairings
 def getTextAddLabel(data, str):
   text = []
-  varnames = data[0]
   for i in range(1, len(data)):
       text.append([data[i][TEXT_INDEX], str]) 
   return text
